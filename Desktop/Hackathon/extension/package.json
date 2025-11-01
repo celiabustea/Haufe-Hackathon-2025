@@ -1,0 +1,138 @@
+{
+  "name": "code-review-ai",
+  "displayName": "AI Code Review",
+  "description": "AI-powered code review with local LLM - Analyzes code for issues, security problems, and style violations",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Linters",
+    "Programming Languages"
+  ],
+  "keywords": [
+    "code review",
+    "AI",
+    "LLM",
+    "local",
+    "ollama",
+    "code quality",
+    "analysis"
+  ],
+  "activationEvents": [
+    "onLanguage:python",
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onCommand:code-review-ai.reviewFile",
+    "onCommand:code-review-ai.reviewSelection",
+    "onView:code-review-panel"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "code-review-ai.reviewFile",
+        "title": "Review This File",
+        "category": "Code Review",
+        "icon": "$(check)"
+      },
+      {
+        "command": "code-review-ai.reviewSelection",
+        "title": "Review Selected Code",
+        "category": "Code Review",
+        "icon": "$(check)"
+      },
+      {
+        "command": "code-review-ai.showPanel",
+        "title": "Show Code Review Panel",
+        "category": "Code Review",
+        "icon": "$(file-text)"
+      },
+      {
+        "command": "code-review-ai.settings",
+        "title": "Configure Code Review",
+        "category": "Code Review",
+        "icon": "$(settings)"
+      },
+      {
+        "command": "code-review-ai.reviewStaged",
+        "title": "Review Staged Changes (Pre-commit)",
+        "category": "Code Review",
+        "icon": "$(git-commit)"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "code-review-ai.reviewFile",
+          "group": "1_modification"
+        },
+        {
+          "command": "code-review-ai.reviewSelection",
+          "group": "1_modification",
+          "when": "editorHasSelection"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "code-review-ai.reviewFile",
+        "key": "ctrl+alt+r",
+        "when": "editorTextFocus"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "code-review-ai-view",
+          "title": "Code Review",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "code-review-ai-view": [
+        {
+          "id": "code-review-panel",
+          "name": "Review Results",
+          "type": "webview"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "AI Code Review",
+      "properties": {
+        "code-review-ai.backendUrl": {
+          "type": "string",
+          "default": "http://localhost:8000",
+          "description": "URL of the code review backend API"
+        },
+        "code-review-ai.autoReviewOnSave": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically review code on file save"
+        },
+        "code-review-ai.showInlineFindings": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show findings as inline diagnostics in the editor"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.50.0",
+    "typescript": "^5.3.3"
+  }
+}

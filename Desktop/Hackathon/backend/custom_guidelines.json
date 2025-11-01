@@ -1,0 +1,12 @@
+{
+  "python": [
+    "Follow PEP 8 style guide",
+    "Add type hints to all functions",
+    "Use descriptive variable names"
+  ],
+  "javascript": [
+    "Use const by default",
+    "Add JSDoc comments",
+    "Handle errors with try-catch"
+  ]
+}

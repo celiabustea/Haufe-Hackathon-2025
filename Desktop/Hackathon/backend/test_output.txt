@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "C:\Users\buste\Desktop\Hackathon\backend\cli.py", line 122, in <module>
+    asyncio.run(main())
+  File "C:\Users\buste\AppData\Local\Programs\Python\Python39-32\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "C:\Users\buste\AppData\Local\Programs\Python\Python39-32\lib\asyncio\base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "C:\Users\buste\Desktop\Hackathon\backend\cli.py", line 38, in main
+    print(f"\U0001f504 Initializing review service with model '{args.model}'...")
+  File "C:\Users\buste\AppData\Local\Programs\Python\Python39-32\lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f504' in position 0: character maps to <undefined>
